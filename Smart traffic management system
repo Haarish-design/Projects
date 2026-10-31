@@ -1,0 +1,123 @@
+# Smart Traffic Management System
+
+An intelligent traffic management prototype that uses computer vision to detect vehicles and adapt traffic signal green time based on vehicle count.
+
+## Overview
+
+The Smart Traffic Management System aims to improve traffic flow and reduce congestion by using computer vision and adaptive signal timing.
+
+The system captures images from a camera, detects vehicles using a pre-trained YOLO model, and calculates an adjusted green signal duration based on the number of vehicles detected.
+
+## Features
+
+- **Vehicle Detection:** Detects vehicles in images using YOLO and OpenCV.
+- **CCTV Image Capture:** Captures and saves images from a connected camera at regular intervals.
+- **Adaptive Signal Timing:** Calculates green signal duration according to vehicle count.
+- **Visual Detection:** Displays detected vehicles with bounding boxes.
+- **Modular Design:** Separates image capture, vehicle detection, and signal timing into individual Python scripts.
+
+## Technologies Used
+
+- Python
+- OpenCV
+- YOLO Object Detection
+- NumPy
+- CCTV / Camera Input
+
+## Project Structure
+
+```text
+Smart-Traffic-Management/
+├── vehicle_detection.py
+├── cctv_image_capture.py
+├── green_time_signal.py
+├── setup.md
+└── README.md
+```
+
+## How It Works
+
+1. The camera captures traffic images.
+2. The vehicle detection module processes an image using a pre-trained YOLO model.
+3. Vehicles are identified and displayed with bounding boxes.
+4. The vehicle count is used to calculate the green signal duration.
+5. The system outputs the adjusted signal timing.
+
+## Green Signal Time Calculation
+
+The current prototype uses the following formula:
+
+```text
+Green Time = Base Green Time + (Vehicle Count × Vehicle Multiplier)
+```
+
+Default parameters:
+
+- Base green time: 30 seconds
+- Vehicle multiplier: 2 seconds per vehicle
+
+For example, if 10 vehicles are detected:
+
+```text
+Green Time = 30 + (10 × 2)
+           = 50 seconds
+```
+
+## Installation
+
+### Prerequisites
+
+- Python 3.6 or higher
+- OpenCV
+- NumPy
+- YOLO model configuration and weights
+- COCO class names file
+
+### Install dependencies
+
+```bash
+pip install opencv-python numpy
+```
+
+Download the required YOLO model files and place them in the project directory.
+
+## Running the Project
+
+### 1. Vehicle Detection
+
+```bash
+python vehicle_detection.py
+```
+
+Configure the image path and YOLO model files before running.
+
+### 2. CCTV Image Capture
+
+```bash
+python cctv_image_capture.py
+```
+
+The script captures an image from the connected camera every 5 seconds.
+
+### 3. Adaptive Green Signal Timing
+
+Create a `vehicle_count.txt` file containing a non-negative integer, then run:
+
+```bash
+python green_time_signal.py
+```
+
+The script calculates and displays the adjusted green signal duration.
+
+## Future Enhancements
+
+- Real-time video-based vehicle detection
+- Multi-lane traffic monitoring
+- Emergency vehicle prioritization
+- Dynamic signal coordination across intersections
+- Traffic density analytics and visualization
+- Integration with physical traffic signal controllers
+
+## Project Status
+
+Academic prototype under development. The current implementation demonstrates image-based vehicle detection and basic adaptive signal timing.
